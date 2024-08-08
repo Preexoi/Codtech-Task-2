@@ -1,0 +1,59 @@
+DESCRIPTION:
+This code measures temperature and simulates humidity using an Arduino. Here's a brief explanation:
+
+1. Temperature Measurement:
+   - The code reads an analog value from a sensor connected to pin A0.
+   - This value is converted into millivolts (Voltage), which is then used to calculate the temperature in Celsius (tempC).
+   - The temperature is further converted into Fahrenheit (tempF).
+   - The results, including raw sensor data, voltage, and temperatures in both Celsius and Fahrenheit, are printed to the Serial Monitor.
+
+2. Humidity Simulation:
+   - Humidity is simulated using a potentiometer connected to pin A1.
+   - The potentiometer's analog value is mapped to a percentage range (10% to 70%).
+   - This simulated humidity value is printed to the Serial Monitor.
+
+3. Loop:
+   - The loop() function repeats every 5 seconds, continuously updating and printing the temperature and humidity readings.
+
+CODE:
+This code records the temperature through testing the mV put out by the sensor.
+It records in both Celcius and Fahrenheit. 
+It can only detect from -40 degrees C to 125 degrees C or -40 degrees F 
+to 257 degrees F
+The Humidity is simulated by a potentiometer by being mapped into percentages
+*/
+
+const int analogIn = A0;
+int humiditysensorOutput = 0;
+// Defining Variables
+int RawValue= 0;
+double Voltage = 0;
+double tempC = 0;
+double tempF = 0;
+
+void setup(){  
+  Serial.begin(9600);
+  pinMode(A1, INPUT);
+}
+
+void loop(){
+  
+  RawValue = analogRead(analogIn);
+  Voltage = (RawValue / 1023.0) * 5000; // 5000 to get millivots.
+  tempC = (Voltage-500) * 0.1; // 500 is the offset
+  tempF = (tempC * 1.8) + 32; // convert to F  
+  Serial.print("Raw Value = " );                  
+  Serial.print(RawValue);      
+  Serial.print("\t milli volts = ");
+  Serial.print(Voltage,0); //
+  Serial.print("\t Temperature in C = ");
+  Serial.print(tempC,1);
+  Serial.print("\t Temperature in F = ");
+  Serial.println(tempF,1);
+  humiditysensorOutput = analogRead(A1);
+  Serial.print("Humidity: "); // Printing out Humidity Percentage
+  Serial.print(map(humiditysensorOutput, 0, 1023, 10, 70));
+delay(5000);  //iterate every 5 seconds
+}
+
+  Serial.println("%");
