@@ -1,6 +1,6 @@
 Name: Preethi T
 Domain: Embedded System
-Duration: July to August 2024
+Duration: August 1 to September 1 2024
 Company: Codtech IT Solutions Pvt. Ltd
 ID: CT08DS6334
 
