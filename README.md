@@ -88,4 +88,6 @@ How it Works
  Conclusion
 
 This project introduces you to monitoring environmental conditions using a DHT22 sensor and an Arduino. This basic setup can be expanded to log data over time or trigger actions based on specific temperature or humidity levels.
+Expected Output:
+The temperature and humidity values are printed to the serial monitor every 2 seconds.If the sensor fails to read, a message indicating the failure will appear on the monitor.This output provides real-time monitoring of environmental conditions, which can be used in various applications like home automation, weather stations, and more.
 
